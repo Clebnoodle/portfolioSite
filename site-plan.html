@@ -81,8 +81,8 @@
       <!-- Think about how you want your navigation bar to look. In the site-plan.css file change the colors to your colors to get the look you desire. --> 
       <nav>
         <a href="#">Home</a>
-        <a href="#">Page2</a>
-        <a href="#">Page3</a>
+        <a href="#">Automated Chess Board</a>
+        <a href="#">Wireless Alarm System</a>
       </nav>
       <hr>
       <h2>
@@ -118,29 +118,90 @@
       </h2>
       <h3>Home page</h3>
       <p>
-        [Written copy for the home page here]
+        This is where each project will be listed with an image and short summary for each.
       </p>
       <p>Images for the Home page</p>
-        <img src="#" alt="image for homepage">
-        <img src="#" alt="image for homepage">
+        <img src="images/alarmStillShotTrimmed.jpg" alt="alarm image" width="640" height="526">
+        <img src="images/boardHome.jpg" alt="chessboard image" width="640" height="360">
 
       
-      <h3>[Page 2]</h3>
+      <h3>Automated Chess Board</h3>
       <p>
-        [Written copy for the Page 2 here]
+        Project Overview
+        In this project I worked with a team to design and develop a chess board that allows the user to play remotely using a physical board.
+        We achieved this using magnetic chess pieces, a movable electromagnet, and hall effect sensors. The electromagnet is affixed to a 2d system of rails 
+        and stepper motors. One motor controls movement in the x direction, while the other controls movement in the y direction. By controlling when the electromagnet is 
+        activated and controlling its movement via the stepper motors, we are able to precisely control how the pieces move. This is how the opponents moves are enacted on the board. 
+
+        To sense which pieces the main player moves we use the hall effect sensors. Each square on the board is affixed with a hall effect sensor which detects whether 
+        there is a piece on each square. When the player makes a move and hits the "move completed" button, we take a snapshot of the board to detect which piece has been 
+        moved.
+
+        Turns alternate between the physical player and the opponent. Once the physical player has made his/her move, we wait for a command over the UART channel. 
+        This command will tell us what move the opponent would like to make using smith notation. Once the move is received, the board then uses the electromagnet to enact 
+        the move.
+
+        Specifications
+        This system uses 1 Nucleo-L476RG development board microcontroller as the main controller for the chess board. On game start a snapshot is taken of the board 
+        by reading each hall effect sensor. Four 16:1 muxes are used to connect the hall effect sensors to 4 ADC channel pins on the Nucleo board. Row by row we sample each 
+        hall effect sensor to determine if a piece is on that square by comparing the reading to a threshold value. If the sensor is pulled low it means the magnet within a  
+        chess piece is on that square. If not, then there is no piece on that square.
+
+        The player then moves a piece and hits the "move completed" button. The board then takes another snapshot of the board and compares it to the previous snapshot. 
+        This allows the board to determine which move was made and send it to a computer using UART over a USB connection. Once the opponent receives which move was made, 
+        he/she can send a move back to the board using smith notation.
+
+        Once the board receives the opponent's move, it calculates how to control the motors based on what piece is being moved and where the source and destination squares 
+        are. It then turns off the electromagnet, moves it to the source square, turns on the electromagnet, moves to the destination square in the correct manner, then turns 
+        off the electromagnet and returns back to the electromagnet resting place. The player is then free to make another move.
+
       </p>
       <p>Images for the Page 2</p>
-        <img src="#" alt="image for page">
-        <img src="#" alt="image for page">
+        <!-- <img src="#" alt="image for page"> -->
+        <video width="640" height="360" controls>
+          <source src="videos/knightMovementTrimmed.mp4" type="video/mp4">
+          Your browser does not support videos.
+        </video>
+        <img src="images/boardPage.jpg" alt="chessboard image" width="640" height="360">
 
       
-      <h3>[Page 3]</h3>
+      <h3>Wireless Alarm System</h3>
       <p>
-        [Written copy for the Page 3 here]
+        Project Overview
+        In this project I created an alarm system that is controlled over bluetooth from a computer. The alarm system uses an LCD screen to display whether or not it is armed. A passive
+        infrared (PIR) sensor is used to detect motion and sound a passive buzzer if the alarm is
+        in the armed state. To control the state of the system, the computer communicates with
+        a HC-05 bluetooth module connected to the microcontroller. The computer runs a python
+        program which uses the Universal Asynchronous Receiver/Transmitter (UART) protocol to
+        communicate with the bluetooth module.
+
+        Specifications
+        This system uses 1 Nucleo-L476RG development board microcontroller and 1 computer
+        which send commands to each other using the UART protocol over a HC-05 bluetooth
+        module. The microcontroller uses the received commands to control the state of the alarm
+        system. Receiving the message "ALARM_ON" arms the system, "ALARM_OFF" disarms
+        the system, and "SOUND_OFF" plays a tune assuming the buzzer is not playing the alarm.
+        When the system is disarmed, the LCD displays "disarmed" and remains in a dormant
+        state. When the system is armed, the LCD displays "ARMED". When the PIR sensor
+        detects motion, it sends a rising edge interrupt to the microcontroller. If the system is in an
+        armed state, the buzzer will play the alarm sound. Otherwise it will do nothing.
+        This alarm can be placed anywhere. It can be powered by a wire outlet or a battery pack.
+        It can be controlled anywhere within distance of the bluetooth module using a computer with
+        Python installed.
+
+        Parts List
+        • 1 Nucleo-L476RG microcontroller
+        • 1 computer with Python installed
+        • 1 1602 LCD screen
+        • 1 PIR sensor
+        • 1 HC-05 bluetooth module
+        • 1 passive buzzer
+        • 1 breadboard
+        • about 20 jumper wires
       </p>
       <p>Images for the Page 3</p>
-        <img src="#" alt="image for page3">
-        <img src="#" alt="image for page3">
+        <img src="images/alarmInterface.png" alt="interface">
+        <img src="images/alarmCircuit.png" alt="circuit diagram">
 
       
       <hr>
