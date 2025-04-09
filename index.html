@@ -7,12 +7,19 @@
   <link rel="stylesheet" href="styles/styles.css" />
 </head>
 <body>
+  <div class="page-wrapper">
   <!-- Logo and navbar at the very top -->
   <div class="header-top">
     <img src="images/logo.jpg" alt="Logo" class="logo" />
     <nav>
       <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
+      <div class="dropdown">
+        <button class="dropbtn">Projects</button>
+        <div class="dropdown-content">
+          <a href="chessboard.html">Automated Chessboard</a>
+          <a href="alarm.html">Wireless Alarm System</a>
+        </div>
+      </div>
       <a href="about.html">About</a>
     </nav>
   </div>
@@ -20,33 +27,37 @@
 
   <header>
     <h1>Welcome to My Portfolio</h1>
-    <h2>Computer Science Projects & Explorations</h2>
+    <h2>Embedded and Software Projects</h2>
   </header>
 
   <main>
     <!-- Section 1: Text Left, Image Right -->
+    <a href="chessboard.html" class="clickable-section">
     <section style="display: flex; align-items: center; margin: 3em 0;">
       <div style="flex: 1; text-align: left; padding: 1em;">
-        <h2>Project Title</h2>
-        <p>This is a short description of the project. It highlights key technologies used and the problem it solves.</p>
+        <h2>Automated Chessboard</h2>
+        <p>A chessboard with moving pieces, allowing users to play chess remotely with physical pieces.</p>
       </div>
       <div style="flex: 1;">
-        <img src="image-placeholder-1.jpg" alt="Project Image" style="width: 100%; max-width: 400px;" />
+        <img src="images/boardHome.jpg" alt="Board Image" style="width: 100%; max-width: 400px;" />
       </div>
     </section>
+    </a>
 
     <!-- Section 2: Image Left, Text Right -->
+    <a href="alarm.html" class="clickable-section">
     <section style="display: flex; align-items: center; flex-direction: row-reverse; margin: 3em 0; background-color: var(--secondary-color); border-radius: 10px;">
       <div style="flex: 1; text-align: left; padding: 1em;">
-        <h2>Another Project</h2>
-        <p>Here’s another brief overview of a different project. Explain what you learned or what made it interesting.</p>
+        <h2>Wireless Alarm System</h2>
+        <p>A fully wireless motion alarm that can be armed and disarmed remotely using bluetooth.</p>
       </div>
       <div style="flex: 1;">
-        <img src="image-placeholder-2.jpg" alt="Another Project Image" style="width: 100%; max-width: 400px;" />
+        <img src="images/alarmStillShotTrimmed.jpg" alt="Alarm Image" style="width: 100%; max-width: 400px;" />
       </div>
     </section>
+    </a>
 
-    <!-- Section 3: Text Left, Image Right -->
+    <!-- Section 3: Text Left, Image Right
     <section style="display: flex; align-items: center; margin: 3em 0;">
       <div style="flex: 1; text-align: left; padding: 1em;">
         <h2>Final Showcase</h2>
@@ -55,8 +66,15 @@
       <div style="flex: 1;">
         <img src="image-placeholder-3.jpg" alt="Final Project Image" style="width: 100%; max-width: 400px;" />
       </div>
-    </section>
+    </section> -->
   </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Caleb Nuttall. All rights reserved.</p>
+    <a href="site-plan.html">View Site Plan</a>
+  </footer>
 
 </body>
+
 </html>

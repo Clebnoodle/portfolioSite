@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Title</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+  <!-- Top Navigation and Logo -->
+  <div class="header-top">
+    <img src="images/logo.jpg" alt="Logo" class="logo" />
+    <nav>
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Projects</button>
+        <div class="dropdown-content">
+          <a href="chessboard.html">Automated Chessboard</a>
+          <a href="alarm.html">Wireless Alarm System</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+  <div style="height: 100px;"></div> <!-- Spacer below fixed navbar -->
+  <div></div>
+
+  <!-- Project Title -->
+  <header>
+    <h1>Automated Chessboard</h1>
+  </header>
+
+  <!-- Project Overview Section -->
+  <section class="project-section">
+    <div class="project-text">
+    <!-- <div class="project-image"> -->
+      <img src="images/boardPage.jpg" alt="Project Image 1" class="float-right"/>
+    <!-- </div> -->
+    
+      <h2>Project Overview</h2>
+      <p>In this project I worked with a team to design and develop a chess board that allows the user to play remotely using a physical board.
+        We achieved this using magnetic chess pieces, a movable electromagnet, and hall effect sensors. The electromagnet is affixed to a 2d system of rails 
+        and stepper motors. One motor controls movement in the x direction, while the other controls movement in the y direction. By controlling when the electromagnet is 
+        activated and controlling its movement via the stepper motors, we are able to precisely control how the pieces move. This is how the opponents moves are enacted on the board. 
+      </p>
+      <p>
+        To sense which pieces the main player moves we use the hall effect sensors. Each square on the board is affixed with a hall effect sensor which detects whether 
+        there is a piece on each square. When the player makes a move and hits the "move completed" button, we take a snapshot of the board to detect which piece has been 
+        moved.
+      </p>
+      <p>
+        Turns alternate between the physical player and the opponent. Once the physical player has made his/her move, we wait for a command over the UART channel. 
+        This command will tell us what move the opponent would like to make using smith notation. Once the move is received, the board then uses the electromagnet to enact 
+        the move.
+      </p>
+    </div>
+  </section>
+
+  <!-- Specifications and Image Section -->
+  <section class="project-section reverse">
+    <div class="project-text">
+        <video class="float-left" autoplay loop>
+            <source src="videos/knightMovementTrimmed.mp4" type="video/mp4">
+            Your browser does not support videos.
+        </video>
+      <h2>Specifications</h2>
+      <p>
+        This system uses 1 Nucleo-L476RG development board microcontroller as the main controller for the chess board. On game start a snapshot is taken of the board 
+        by reading each hall effect sensor. Four 16:1 muxes are used to connect the hall effect sensors to 4 ADC channel pins on the Nucleo board. Row by row we sample each 
+        hall effect sensor to determine if a piece is on that square by comparing the reading to a threshold value. If the sensor is pulled low it means the magnet within a  
+        chess piece is on that square. If not, then there is no piece on that square.
+      </p>
+      <p>
+        The player then moves a piece and hits the "move completed" button. The board then takes another snapshot of the board and compares it to the previous snapshot. 
+        This allows the board to determine which move was made and send it to a computer using UART over a USB connection. Once the opponent receives which move was made, 
+        he/she can send a move back to the board using smith notation.
+      </p>
+      <p>
+        Once the board receives the opponent's move, it calculates how to control the motors based on what piece is being moved and where the source and destination squares 
+        are. It then turns off the electromagnet, moves it to the source square, turns on the electromagnet, moves to the destination square in the correct manner, then turns 
+        off the electromagnet and returns back to the electromagnet resting place. The player is then free to make another move.
+      </p>
+    
+
+    </div>
+  </section>
+
+  <!-- Parts List Section -->
+  <section class="project-section">
+    <div class="project-text">
+      <h2>Parts List</h2>
+      <ul>
+        <li>Nucleo-L476RG development board</li>
+        <li>2 T extrusion bars</li>
+        <li>2 NEMA 17 12v stepper motors</li>
+        <li>2 motor driver boards</li>
+        <li>1 electromagnet</li>
+        <li>1 relay switch</li>
+        <li>64 hall effect sensors</li>
+        <li>2 cams and drive belts</li>
+        <li>4 16:1 multiplexers</li>
+      </ul>
+    </div>
+  </section>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Caleb Nuttall. All rights reserved.</p>
+    <a href="site-plan.html">View Site Plan</a>
+  </footer>
+</body>
+
+</html>
